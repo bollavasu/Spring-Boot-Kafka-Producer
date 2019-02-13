@@ -1,0 +1,30 @@
+
+https://kafka.apache.org/quickstart
+
+go to C:\kafka_2.11-2.1.0
+1)start ZooKeeper
+  bin\windows\zookeeper-server-start.bat config\zookeeper.properties 
+2)start Kafka
+  bin\windows\kafka-server-start.bat config\server.properties 
+3)create a test topic  
+  bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test    
+4)to see the list of topics
+  bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+5)Run the producer and then type a few messages into the console to send to the server
+  bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic test
+6)Run the consumer and receive the messages
+  bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic test --from-beginning
+  
+https://github.com/TechPrimers/spring-boot-kafka-producer-example
+
+mvn clean install
+
+mvn spring-boot:run
+
+http://localhost:8085/kafka/publish/Vasu     (Publish message via application)
+
+We need the following to send the message to the Kafka topic
+1)Kafka Configuration class 
+  KakfaConfiguration.java
+2)by using KafkaTemplate we can send the message as below
+  kafkaTemplate.send("TopicName", new User(name, "Technology", 12000L));
